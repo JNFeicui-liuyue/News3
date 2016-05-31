@@ -75,7 +75,7 @@ public class MyBaseActivity extends Activity{
     public void openActivity(Class<?> pClass, Bundle bundle, Uri uri) {
         Intent intent = new Intent(this, pClass);
         if (bundle != null)
-            intent.putExtras(bundle);
+            intent.putExtras(bundle);//向intent中放入需要携带的数据包
         if (uri != null)
             intent.setData(uri);
         startActivity(intent);

@@ -59,7 +59,6 @@ public class MyApplication extends Application{
     }
 
     //内存不足的时候
-
     @Override
     public void onLowMemory() {
         super.onLowMemory();
@@ -67,7 +66,6 @@ public class MyApplication extends Application{
     }
 
     //结束的时候
-
     @Override
     public void onTerminate() {
         super.onTerminate();

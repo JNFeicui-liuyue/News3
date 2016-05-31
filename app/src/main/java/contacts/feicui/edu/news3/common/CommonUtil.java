@@ -1,6 +1,6 @@
 package contacts.feicui.edu.news3.common;
 
-/**
+/**联网，存储数据
  * Created by liuyue on 2016/5/30.
  */
 public class CommonUtil {

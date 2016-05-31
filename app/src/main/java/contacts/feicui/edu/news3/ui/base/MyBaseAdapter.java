@@ -19,7 +19,8 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
     protected Context mContext;
     //定义布局过滤器
     protected LayoutInflater mInflater;
-    protected List<T> myList = new ArrayList<T>();//定义数据集合，并初始化
+    //定义数据集合，并初始化
+    protected List<T> myList = new ArrayList<T>();
 
     public MyBaseAdapter(Context context) {
         //初始化context，inflate对象
@@ -130,4 +131,13 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
     }
     //作为预留方法，定义为抽象方法，要求子类继承该基础类时，必须重写该方法
     public abstract View getMyView(int position,View converView,ViewGroup parent);
+    /*1.自定义适配器，重写getMyView（）方法
+    * class DemoAdapter extends MyBaseAdapter{
+    * @Override
+    public View getMyView(int position, View convertView, ViewGroup parent) {
+        设置适配对象子条目的样式
+    }
+    2.对设配对象设置适配器
+    DemoAdapter adapter = new DemoAdapter（Context 对象）；
+    适配对象.setAdapter(adapter)*/
 }

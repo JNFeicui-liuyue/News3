@@ -3,6 +3,7 @@ package contacts.feicui.edu.news3.common;
 import android.util.Log;
 
 /**日志管理
+ * 重新对打印类的所有方法添加判别进行封装
  * Created by liuyue on 2016/5/30.
  */
 public class LogUtil {

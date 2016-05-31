@@ -25,6 +25,16 @@ public class ActivityLead extends MyBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lead);
 
+        SharedPreferences preferences = getSharedPreferences("runconfig",MODE_PRIVATE);
+        //从文件中获取存储的数据，默认为true
+        boolean isFirst = preferences.getBoolean("isFirstRun",true);
+        //如果不是第一次打开，则直接跳转到Logo界面
+        if (!isFirst){
+            openActivity(ActivityLogo.class);
+            finish();
+            return;
+        }
+
         //初始化控件
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         //为ViewPager设置滑动处理事件
