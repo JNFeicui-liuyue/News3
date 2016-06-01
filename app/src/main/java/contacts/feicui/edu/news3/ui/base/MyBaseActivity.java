@@ -1,9 +1,9 @@
 package contacts.feicui.edu.news3.ui.base;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import contacts.feicui.edu.news3.common.LogUtil;
@@ -11,12 +11,12 @@ import contacts.feicui.edu.news3.common.LogUtil;
 /**封装Activity常用的方法，减少代码重用
  * Created by liuyue on 2016/5/31.
  */
-public class MyBaseActivity extends Activity{
+public class MyBaseActivity extends FragmentActivity {
 
     protected int screen_w,screen_h;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //获取屏幕的宽和高
         screen_w = getWindowManager().getDefaultDisplay().getWidth();

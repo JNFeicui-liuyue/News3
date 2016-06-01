@@ -1,9 +1,11 @@
 package contacts.feicui.edu.news3;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import contacts.feicui.edu.news3.ui.base.MyBaseActivity;
+
+public class MainActivity extends MyBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
