@@ -42,11 +42,11 @@ public class FragmentMenu extends Fragment {
             switch (v.getId()){
                 case R.id.rl_news:
                     rls[0].setBackgroundColor(0x33c85555);
-                    ((ActivityMain)getActivity()).showFragmentMain();
+//                    ((ActivityMain)getActivity()).showFragmentMain();
                     break;
                 case R.id.rl_reading:
                     rls[1].setBackgroundColor(0x33c85555);
-                    ((ActivityMain)getActivity()).showFragmentFavorite();
+//                    ((ActivityMain)getActivity()).showFragmentFavorite();
                     break;
                 case R.id.rl_local:
                     rls[2].setBackgroundColor(0x33c85555);

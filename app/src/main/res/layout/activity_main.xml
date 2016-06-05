@@ -16,7 +16,16 @@
         android:id="@+id/layout_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
     </RelativeLayout>
+
+
 
 
 </LinearLayout>

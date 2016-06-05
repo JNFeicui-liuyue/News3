@@ -1,5 +1,5 @@
 package contacts.feicui.edu.news3.view.slidingmenu;
-//package com.android1.news.view.slidingmenu;
+//package com.android1.News.view.slidingmenu;
 //
 //import android.graphics.Canvas;
 //import android.graphics.drawable.Drawable;

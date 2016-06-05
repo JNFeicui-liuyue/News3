@@ -13,11 +13,11 @@ import contacts.feicui.edu.news3.ui.base.MyBaseAdapter;
 /**
  * Created by liuyue on 2016/6/1.
  */
-public class NewTypeAdapter extends MyBaseAdapter<SubType> {
+public class NewsTypeAdapter extends MyBaseAdapter<SubType> {
 
     private int selectedPosition;
 
-    public NewTypeAdapter(Context context) {
+    public NewsTypeAdapter(Context context) {
         super(context);
 
     }
