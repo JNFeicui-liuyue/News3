@@ -14,14 +14,14 @@ import java.util.List;
 
 import contacts.feicui.edu.news3.R;
 import contacts.feicui.edu.news3.model.biz.ImageLoader;
-import contacts.feicui.edu.news3.model.entity.NewsBean;
+import contacts.feicui.edu.news3.model.entity.News;
 
 /**
  * Created by liuyue on 2016/6/4.
  */
 public class NewsAdapter1 extends BaseAdapter implements AbsListView.OnScrollListener{
 
-    private List<NewsBean> mList;
+    private List<News> mList;
     //用一个layout布局来接收转化的item
     private LayoutInflater mInflater;
     private ImageLoader mImageLoader;
@@ -33,7 +33,7 @@ public class NewsAdapter1 extends BaseAdapter implements AbsListView.OnScrollLis
     private boolean mFirstIn;
 
 
-    public NewsAdapter1(Context context, List<NewsBean> data, ListView listView){
+    public NewsAdapter1(Context context, List<News> data, ListView listView){
         mList = data;
         mInflater = LayoutInflater.from(context);
         //只保留一个LruCache

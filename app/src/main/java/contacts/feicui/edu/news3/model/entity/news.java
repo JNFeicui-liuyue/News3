@@ -10,29 +10,29 @@ public class News implements Serializable{
 
     private static final long serialVersionUID = 1L;
     //类型标识 1：列表新闻 2.大图新闻
-    private int type;
+    public int type;
     //新闻id
-    private int nid;
+    public int nid;
     //时间戳
-    private String stamp;
+    public String stamp;
     //图标
-    private String icon;
+    public String icon;
     //新闻标题
-    private String title;
+    public String title;
     //新闻摘要
-    private String summary;
+    public String summary;
     //新闻链接
-    private String link;
+    public String link;
 
-    public News(int type, int nid, String stamp, String icon, String title, String summary, String link) {
-        this.type = type;
-        this.nid = nid;
-        this.stamp = stamp;
-        this.icon = icon;
-        this.title = title;
-        this.summary = summary;
-        this.link = link;
-    }
+//    public News(int type, int nid, String stamp, String icon, String title, String summary, String link) {
+//        this.type = type;
+//        this.nid = nid;
+//        this.stamp = stamp;
+//        this.icon = icon;
+//        this.title = title;
+//        this.summary = summary;
+//        this.link = link;
+//    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

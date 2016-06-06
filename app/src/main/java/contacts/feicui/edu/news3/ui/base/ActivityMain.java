@@ -1,29 +1,20 @@
 package contacts.feicui.edu.news3.ui.base;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import contacts.feicui.edu.news3.R;
-import contacts.feicui.edu.news3.model.entity.NewsBean;
+import contacts.feicui.edu.news3.model.biz.parser.ParserNews;
+import contacts.feicui.edu.news3.model.entity.News;
 import contacts.feicui.edu.news3.ui.adapter.NewsAdapter1;
 import contacts.feicui.edu.news3.view.slidingmenu.SlidingMenu;
 
@@ -39,73 +30,19 @@ public class ActivityMain extends MyBaseActivity {
     private ListView mListView;
     private static String URL = "http://118.244.212.82:9092/newsClient/news_list?ver=1&subid=1&dir=1&nid=1&stamp=20160603&cnt=20";
 
-    //将URL对应的json格式对象转化为我们所封装的newsBean对象
-    private List<NewsBean> getJsonData(String url) {
-        List<NewsBean> newsBeanList = new ArrayList<NewsBean>();
-        try {
-            //此句功能与url.openConnection（）.getInputStream相同。可根据URL直接联网获取网络数据，返回类型为InputStream
-            String jsonString = readStream(new URL(url).openStream());
-            Log.d("xys", jsonString);
-            JSONObject jsonObject;
-            NewsBean newsBean;
-            try {
-                jsonObject = new JSONObject(jsonString);
-                JSONArray jsonArray = jsonObject.getJSONArray("data");
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    //jsonArray中每一个都是jsonObject
-                    jsonObject = jsonArray.getJSONObject(i);
-                    newsBean = new NewsBean();
-                    newsBean.icon = jsonObject.getString("icon");
-                    newsBean.title = jsonObject.getString("title");
-                    Log.d("xys", newsBean.title);
-                    newsBean.summary = jsonObject.getString("summary");
-                    Log.d("xys", newsBean.summary);
-                    newsBean.stamp = jsonObject.getString("stamp");
-                    Log.d("xys", newsBean.stamp);
 
-                    newsBeanList.add(newsBean);
-                    Log.d(TAG, "newsBeanList size********" + newsBeanList.size());
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return newsBeanList;
-    }
-
-    //读取网页内容（通过inputStream解析网页返回的数据）
-    private String readStream(InputStream is) {
-        InputStreamReader isr;
-        String result = "";
-        try {
-            //从is中一行一行的读取
-            String line = "";
-            isr = new InputStreamReader(is, "utf-8");//字节流转化为字符流
-            BufferedReader br = new BufferedReader(isr);
-            while ((line = br.readLine()) != null) {
-                result += line;
-            }
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //存放的是网页中的所有内容
-        return result;
-    }
+    ParserNews mParserNews = new ParserNews();
 
     //实现网络的异步访问
-    class NewsAsyncTask extends AsyncTask<String, Void, List<NewsBean>> {
+    class NewsAsyncTask extends AsyncTask<String, Void, List<News>> {
 
         @Override
-        protected List<NewsBean> doInBackground(String... params) {
-            return getJsonData(params[0]);//请求的网址
+        protected List<News> doInBackground(String... params) {
+            return mParserNews.getJsonData();//请求的网址
         }
 
         @Override
-        protected void onPostExecute(List<NewsBean> newsBean) {
+        protected void onPostExecute(List<News> newsBean) {
             super.onPostExecute(newsBean);
             NewsAdapter1 adapter = new NewsAdapter1(ActivityMain.this, newsBean,mListView);
             mListView.setAdapter(adapter);
@@ -124,6 +61,7 @@ public class ActivityMain extends MyBaseActivity {
 
         mListView = (ListView) findViewById(R.id.lv_list);
         new NewsAsyncTask().execute(URL);
+        mListView.setOnItemClickListener(newsItemListener);
 
         initSlidingMenu();
 //        showFragmentMain();
@@ -181,49 +119,19 @@ public class ActivityMain extends MyBaseActivity {
 
     }
 
-    //显示:“显示收藏新闻列表的Fragment”
-//    public void showFragmentFavorite(){
-//        setTitle("收藏新闻");
-//        sSlidingMenu.showContent();
-//        if(fragmentFavorite==null)
-//            fragmentFavorite=new FragmentFavorite();
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.layout_content, fragmentFavorite).commit();
-//    }
+    /**
+     * 新闻单项点击事件
+     */
+    private AdapterView.OnItemClickListener newsItemListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            //打开显示当前选中的新闻
+            News news = (News) adapterView.getItemAtPosition(position);
+            Intent intent = new Intent(ActivityMain.this,ActivityShow.class);
+//            向Intent中放入需要携带的数据包 P231
+            intent.putExtra("newsitem",news);
+            startActivity(intent);
 
-//    //显示：“显示新闻更多分类Fragment”
-//    public void showFragmentType(){
-//        setTitle("分类");
-//        sSlidingMenu.showContent();
-//        if (fragmentType == null)
-//            fragmentType = new FragmentType();
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.layout_content,fragmentType).commit();
-//
-//    }
-//
-    //显示：“显示新闻列表的Fragment”
-//    public void showFragmentMain(){
-//        setTitle("资讯");
-//        sSlidingMenu.showContent();
-//        if (fragmentMain == null)
-//            fragmentMain = new FragmentMain();
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(R.id.layout_content,fragmentMain).commit();
-//    }
-//
-//    //显示：“登录的Fragment”
-//    public void showFragmentLogin(){
-//
-//    }
-//
-//    //显示：“注册的Fragment”
-//    public void showFragmentRegister(){
-//
-//    }
-//
-//    //显示：“忘记密码的Fragment”
-//    public void showFragmentForgetPass(){
-//
-//    }
+        }
+    };
 }
