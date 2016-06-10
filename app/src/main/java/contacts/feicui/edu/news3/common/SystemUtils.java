@@ -28,7 +28,7 @@ public class SystemUtils {
     private LocationManager locationManager;
     private String position;
 
-    private SystemUtils(Context context){
+    public SystemUtils(Context context){
         this.context = context;
         telManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

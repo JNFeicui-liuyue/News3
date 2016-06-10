@@ -26,12 +26,12 @@ public class ActivityMain extends MyBaseActivity {
     public static SlidingMenu sSlidingMenu;
     private ImageView iv_set, iv_user;
     private TextView textView_title;
-
-    private ListView mListView;
+    private NewsAdapter1 adapter;
     private static String URL = "http://118.244.212.82:9092/newsClient/news_list?ver=1&subid=1&dir=1&nid=1&stamp=20160603&cnt=20";
-
-
+    ReFlashableView      mReFlashableView;
+    ListView mListView;
     ParserNews mParserNews = new ParserNews();
+
 
     //实现网络的异步访问
     class NewsAsyncTask extends AsyncTask<String, Void, List<News>> {
@@ -44,7 +44,7 @@ public class ActivityMain extends MyBaseActivity {
         @Override
         protected void onPostExecute(List<News> newsBean) {
             super.onPostExecute(newsBean);
-            NewsAdapter1 adapter = new NewsAdapter1(ActivityMain.this, newsBean,mListView);
+            adapter = new NewsAdapter1(ActivityMain.this, newsBean,mListView);
             mListView.setAdapter(adapter);
         }
     }
@@ -53,19 +53,37 @@ public class ActivityMain extends MyBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //不显示ActionBar
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+
         textView_title = (TextView) findViewById(R.id.textView1);
         iv_set = (ImageView) findViewById(R.id.imageView_set);
         iv_user = (ImageView) findViewById(R.id.imageView_user);
         iv_set.setOnClickListener(onClickListener);
         iv_user.setOnClickListener(onClickListener);
 
-        mListView = (ListView) findViewById(R.id.lv_list);
-        new NewsAsyncTask().execute(URL);
-        mListView.setOnItemClickListener(newsItemListener);
+        mReFlashableView = (ReFlashableView) findViewById(R.id.refreshable_view);
+        mListView = (ListView) findViewById(R.id.list_view);
 
-        initSlidingMenu();
+        new NewsAsyncTask().execute(URL);
+
 //        showFragmentMain();
 
+
+        mReFlashableView.setOnRefreshListener(new ReFlashableView.PullToRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mReFlashableView.finishRefreshing();
+            }
+        }, 0);
+
+        initSlidingMenu();
 
     }
 
@@ -134,4 +152,6 @@ public class ActivityMain extends MyBaseActivity {
 
         }
     };
+
+
 }

@@ -28,6 +28,9 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         mInflater = LayoutInflater.from(mContext);
     }
 
+    protected MyBaseAdapter() {
+    }
+
     //定义清除所有数据，
     public void clear(){
         myList.clear();

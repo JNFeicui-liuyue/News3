@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,11 +14,12 @@ import java.util.List;
 import contacts.feicui.edu.news3.R;
 import contacts.feicui.edu.news3.model.biz.ImageLoader;
 import contacts.feicui.edu.news3.model.entity.News;
+import contacts.feicui.edu.news3.ui.base.MyBaseAdapter;
 
 /**
  * Created by liuyue on 2016/6/4.
  */
-public class NewsAdapter1 extends BaseAdapter implements AbsListView.OnScrollListener{
+public class NewsAdapter1 extends MyBaseAdapter<News> implements AbsListView.OnScrollListener{
 
     private List<News> mList;
     //用一个layout布局来接收转化的item
@@ -34,6 +34,7 @@ public class NewsAdapter1 extends BaseAdapter implements AbsListView.OnScrollLis
 
 
     public NewsAdapter1(Context context, List<News> data, ListView listView){
+
         mList = data;
         mInflater = LayoutInflater.from(context);
         //只保留一个LruCache
@@ -57,7 +58,7 @@ public class NewsAdapter1 extends BaseAdapter implements AbsListView.OnScrollLis
     }
 
     @Override
-    public Object getItem(int position) {
+    public News getItem(int position) {
         return mList.get(position);
     }
 
@@ -94,6 +95,11 @@ public class NewsAdapter1 extends BaseAdapter implements AbsListView.OnScrollLis
         viewHolder.tvSummary.setText(mList.get(position).summary);
         viewHolder.tvStamp.setText(mList.get(position).stamp);
         return convertView;
+    }
+
+    @Override
+    public View getMyView(int position, View converView, ViewGroup parent) {
+        return null;
     }
 
     @Override
