@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <EditText
+            android:hint="请输入用户昵称"
+            android:id="@+id/editText_nickname"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:hint="密码：6到16位个字符"
+            android:id="@+id/editText_pwd"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/button_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="注册"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/drawable_normalbutton_selector"/>
+
+            <Button
+                android:id="@+id/button_forgetPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="忘记密码"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/drawable_normalbutton_selector"/>
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:background="@drawable/drawable_normalbutton_selector"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -33,6 +33,15 @@
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none"></ListView>
+            android:scrollbars="none">
+
+            <!--<contacts.feicui.edu.news3.ui.base.LoadListView-->
+                <!--android:id="@+id/loadmore"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"></contacts.feicui.edu.news3.ui.base.LoadListView>-->
+        </ListView>
+
+
     </contacts.feicui.edu.news3.ui.base.ReFlashableView>
+
 </RelativeLayout>

@@ -10,10 +10,9 @@ import android.widget.ImageView;
 
 import contacts.feicui.edu.news3.R;
 import contacts.feicui.edu.news3.model.volley.Response;
-import contacts.feicui.edu.news3.ui.adapter.NewsAdapter;
 import contacts.feicui.edu.news3.ui.adapter.NewsTypeAdapter;
 import contacts.feicui.edu.news3.view.HorizontalListView;
-import contacts.feicui.edu.news3.view.xlistview.XListView;
+//import contacts.feicui.edu.news3.view.xlistview.XListView;
 
 /**新闻列表界面
  * Created by liuyue on 2016/6/1.
@@ -22,9 +21,9 @@ public class FragmentMain extends Fragment{
     //填充view
     private View view;
     //新闻列表
-    private XListView listView;
-    //新闻适配器
-    private NewsAdapter newsAdapter;
+//    private XListView listView;
+//    //新闻适配器
+//    private NewsAdapter newsAdapter;
     //分类列表
     private HorizontalListView hl_type;
     //分类适配器
@@ -45,12 +44,12 @@ public class FragmentMain extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_newslist,container,false);
         mainActivity = (ActivityMain)getActivity();
-        listView= (XListView) view.findViewById(R.id.listview);
-        //加载新闻分类
-        if(listView != null) {
-            newsAdapter = new NewsAdapter(getActivity(), listView);
-            listView.setAdapter(newsAdapter);
-        }
+//        listView= (XListView) view.findViewById(R.id.listview);
+//        //加载新闻分类
+//        if(listView != null) {
+//            newsAdapter = new NewsAdapter(getActivity(), listView);
+//            listView.setAdapter(newsAdapter);
+//        }
         return view;
     }
 

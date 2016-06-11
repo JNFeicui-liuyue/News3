@@ -66,6 +66,8 @@ public class ActivityMain extends MyBaseActivity {
         mReFlashableView = (ReFlashableView) findViewById(R.id.refreshable_view);
         mListView = (ListView) findViewById(R.id.list_view);
 
+
+
         new NewsAsyncTask().execute(URL);
 
 //        showFragmentMain();
